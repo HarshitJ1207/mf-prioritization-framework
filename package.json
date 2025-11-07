@@ -1,0 +1,28 @@
+{
+  "name": "webpackmf-module-federation-comparison",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently \"npm start --workspace=hostbuildtime\" \"npm start --workspace=header-app\" \"npm start --workspace=main-app\" \"npm start --workspace=footer-app\"",
+    "build": "concurrently \"npm run build --workspace=hostbuildtime\" \"npm run build --workspace=header-app\" \"npm run build --workspace=main-app\" \"npm run build --workspace=footer-app\"",
+    "cleandist": "rm -rf headerApp/dist mainApp/dist footerApp/dist hostbuildtime/dist",
+    "cleanmodules": "rm -rf headerApp/node_modules mainApp/node_modules footerApp/node_modules hostbuildtime/node_modules node_modules",
+    "cleanall": "npm run cleandist && npm run cleanmodules",
+    "cleanstart": "npm run cleandist && npm start",
+    "cleanbuild": "npm run cleandist && npm run build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "workspaces": [
+    "hostbuildtime",
+    "headerApp",
+    "mainApp",
+    "footerApp"
+  ],
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "webpack-bundle-analyzer": "^4.10.2"
+  }
+}
