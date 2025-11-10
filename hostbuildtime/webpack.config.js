@@ -32,9 +32,10 @@ module.exports = {
     new ModuleFederationPlugin({
       name: "hostbuildtime",
       remotes: {
+        // High priority remotes - loaded at build time
         headerApp: "headerApp@http://localhost:3001/remoteEntry.js",
         mainApp: "mainApp@http://localhost:3003/remoteEntry.js",
-        footerApp: "footerApp@http://localhost:3002/remoteEntry.js",
+        // Low priority remotes (footerApp) loaded dynamically at runtime
       },
       // adds react as shared module
       // version is inferred from package.json
