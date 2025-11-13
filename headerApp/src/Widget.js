@@ -1,6 +1,8 @@
+import '../../setNonce';
 import React, { useEffect, useRef } from "react";
 import _ from "lodash";
 import { Chart } from "chart.js/auto";
+import "./Widget.css";
 
 export default function Widget() {
   const chartRef = useRef(null);
@@ -70,39 +72,20 @@ export default function Widget() {
   }, []);
 
   return (
-    <header
-      style={{
-        backgroundColor: "#282c34",
-        padding: "1.5em",
-        color: "white",
-      }}
-      data-e2e="HEADER_APP__WIDGET"
-    >
-      <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+    <header className="header-widget" data-e2e="HEADER_APP__WIDGET">
+      <div className="header-container">
         <h1>Header Component (High Priority)</h1>
         <p>This is a federated header component from headerApp</p>
 
         {/* Lodash example */}
-        <div style={{
-          marginTop: '1em',
-          padding: '1em',
-          backgroundColor: 'rgba(255,255,255,0.1)',
-          borderRadius: '4px'
-        }}>
+        <div className="header-section">
           <strong>📦 Lodash Example:</strong>
-          <p style={{ fontSize: '0.9em', margin: '0.5em 0' }}>
+          <p>
             Navigation items: {itemCount} | First: {firstItem?.name} ({firstItem?.slug})
           </p>
-          <div style={{ fontSize: '0.85em' }}>
+          <div className="nav-items">
             {_.map(processedItems, item => (
-              <span key={item.id} style={{
-                marginRight: '0.5em',
-                padding: '0.25em 0.5em',
-                backgroundColor: 'rgba(97, 218, 251, 0.2)',
-                borderRadius: '3px',
-                display: 'inline-block',
-                marginBottom: '0.25em'
-              }}>
+              <span key={item.id} className="nav-item">
                 {item.name}
               </span>
             ))}
@@ -110,14 +93,9 @@ export default function Widget() {
         </div>
 
         {/* Chart.js example */}
-        <div style={{
-          marginTop: '1em',
-          padding: '1em',
-          backgroundColor: 'rgba(255,255,255,0.1)',
-          borderRadius: '4px'
-        }}>
+        <div className="header-section">
           <strong>📊 Chart.js Example - Weekly Page Views:</strong>
-          <div style={{ height: '150px', marginTop: '0.5em' }}>
+          <div className="chart-container">
             <canvas ref={chartRef}></canvas>
           </div>
         </div>

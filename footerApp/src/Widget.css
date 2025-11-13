@@ -1,0 +1,61 @@
+.footer-widget {
+  background-color: #282c34;
+  padding: 1.5em;
+  color: white;
+  margin-top: 2em;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-section {
+  margin-top: 1.5em;
+  padding: 1em;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  text-align: left;
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1em;
+  margin-top: 1em;
+}
+
+.metric-card {
+  padding: 0.75em;
+  background-color: rgba(97, 218, 251, 0.2);
+  border-radius: 4px;
+}
+
+.metric-label {
+  font-size: 0.85em;
+  opacity: 0.8;
+}
+
+.metric-value {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.metric-summary {
+  margin-top: 1em;
+  font-size: 0.9em;
+}
+
+.chart-wrapper {
+  height: 200px;
+  margin-top: 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chart-inner {
+  width: 300px;
+  height: 200px;
+}
+

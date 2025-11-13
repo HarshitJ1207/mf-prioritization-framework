@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Host App - Module Federation</title>
+
+		<!-- Set nonce IMMEDIATELY before any scripts load -->
+		<script nonce="<%= nonce %>">
+			window.__webpack_nonce__ = '<%= nonce %>';
+		</script>
+
+		<% for (var chunk in htmlWebpackPlugin.files.css) { %>
+		<link
+			nonce="<%= nonce %>"
+			rel="stylesheet"
+			href="<%= htmlWebpackPlugin.files.css[chunk] %>"
+		/>
+		<% } %>
+	</head>
+	<body>
+		<div id="root"></div>
+		<% for (var chunk in htmlWebpackPlugin.files.js) { %>
+		<script
+			nonce="<%= nonce %>"
+			defer
+			src="<%= htmlWebpackPlugin.files.js[chunk] %>"
+		></script>
+		<% } %>
+	</body>
+</html>

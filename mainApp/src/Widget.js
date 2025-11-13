@@ -1,6 +1,8 @@
+import '../../setNonce';
 import React, { useEffect, useRef } from "react";
 import _ from "lodash";
 import { Chart } from "chart.js/auto";
+import "./Widget.css";
 
 export default function Widget() {
   const chartRef = useRef(null);
@@ -82,41 +84,34 @@ export default function Widget() {
   }, []);
 
   return (
-    <main
-      style={{
-        flex: 1,
-        padding: "2em",
-        backgroundColor: "#f5f5f5",
-      }}
-      data-e2e="MAIN_APP__WIDGET"
-    >
+    <main className="main-widget" data-e2e="MAIN_APP__WIDGET">
       <h1>Main Content Component (High Priority)</h1>
       <p>This is the main content area loaded from mainApp.</p>
 
       {/* Lodash example */}
-      <div style={{ marginTop: "2em", padding: "1.5em", backgroundColor: "#e3f2fd", borderRadius: "8px" }}>
+      <div className="lodash-section">
         <h3>📦 Lodash Data Processing Example</h3>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1em', marginTop: '1em' }}>
-          <div style={{ padding: '1em', backgroundColor: 'white', borderRadius: '4px' }}>
+        <div className="modules-grid">
+          <div className="module-card">
             <strong>High Priority Modules:</strong>
-            <ul style={{ margin: '0.5em 0', paddingLeft: '1.5em' }}>
+            <ul>
               {_.map(highPriorityModules, m => (
                 <li key={m.name}>{m.name} - {m.size}KB</li>
               ))}
             </ul>
           </div>
-          <div style={{ padding: '1em', backgroundColor: 'white', borderRadius: '4px' }}>
+          <div className="module-card">
             <strong>Low Priority Modules:</strong>
-            <ul style={{ margin: '0.5em 0', paddingLeft: '1.5em' }}>
+            <ul>
               {_.map(lowPriorityModules, m => (
                 <li key={m.name}>{m.name} - {m.size}KB</li>
               ))}
             </ul>
           </div>
         </div>
-        <div style={{ marginTop: '1em', padding: '1em', backgroundColor: 'white', borderRadius: '4px' }}>
+        <div className="stats-card">
           <strong>Statistics:</strong>
-          <ul style={{ margin: '0.5em 0', paddingLeft: '1.5em' }}>
+          <ul>
             <li>Total Size: {totalSize}KB</li>
             <li>Average Size: {_.round(averageSize, 2)}KB</li>
             <li>Largest: {_.first(sortedBySize)?.name} ({_.first(sortedBySize)?.size}KB)</li>
@@ -126,14 +121,14 @@ export default function Widget() {
       </div>
 
       {/* Chart.js example */}
-      <div style={{ marginTop: "2em", padding: "1.5em", backgroundColor: "white", borderRadius: "8px" }}>
+      <div className="chart-section">
         <h3>📊 Chart.js Visualization Example</h3>
-        <div style={{ height: '300px', marginTop: '1em', padding: '1em', borderRadius: '4px' }}>
+        <div className="chart-container">
           <canvas ref={chartRef}></canvas>
         </div>
       </div>
 
-      <div style={{ marginTop: "2em", padding: "1em", backgroundColor: "#fff3e0", borderRadius: "4px" }}>
+      <div className="info-section">
         <h2>About Module Federation</h2>
         <p>
           This host application demonstrates Module Federation by loading:

@@ -1,1 +1,2 @@
+import '../../setNonce';
 import('./bootstrap');

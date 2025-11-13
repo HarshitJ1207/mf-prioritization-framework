@@ -6,6 +6,8 @@
   "scripts": {
     "start": "concurrently \"npm start --workspace=hostbuildtime\" \"npm start --workspace=header-app\" \"npm start --workspace=main-app\" \"npm start --workspace=footer-app\"",
     "build": "concurrently \"npm run build --workspace=hostbuildtime\" \"npm run build --workspace=header-app\" \"npm run build --workspace=main-app\" \"npm run build --workspace=footer-app\"",
+    "serve": "concurrently \"npx http-server hostbuildtime/dist -p 3000 --cors\" \"npx http-server headerApp/dist -p 3001 --cors\" \"npx http-server mainApp/dist -p 3003 --cors\" \"npx http-server footerApp/dist -p 3002 --cors\"",
+    "serve:build": "npm run cleanbuild && npm run serve",
     "cleandist": "rm -rf headerApp/dist mainApp/dist footerApp/dist hostbuildtime/dist",
     "cleanmodules": "rm -rf headerApp/node_modules mainApp/node_modules footerApp/node_modules hostbuildtime/node_modules node_modules",
     "cleanall": "npm run cleandist && npm run cleanmodules",
@@ -23,6 +25,10 @@
   ],
   "devDependencies": {
     "concurrently": "^8.2.2",
+    "mini-css-extract-plugin": "^2.9.4",
     "webpack-bundle-analyzer": "^4.10.2"
+  },
+  "dependencies": {
+    "http-server": "^14.1.1"
   }
 }

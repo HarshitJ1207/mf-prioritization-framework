@@ -1,6 +1,8 @@
+import '../../setNonce';
 import React, { useState, useEffect, useRef } from "react";
 import _ from "lodash";
 import { Chart } from "chart.js/auto";
+import "./Widget.css";
 
 export default function Widget() {
   const [state, setState] = useState("footer app");
@@ -78,49 +80,26 @@ export default function Widget() {
   }, []);
 
   return (
-    <footer
-      style={{
-        backgroundColor: "#282c34",
-        padding: "1.5em",
-        color: "white",
-        marginTop: "2em",
-      }}
-      data-e2e="FOOTER_APP__WIDGET"
-    >
-      <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+    <footer className="footer-widget" data-e2e="FOOTER_APP__WIDGET">
+      <div className="footer-container">
         <h3>Footer Component (Low Priority)</h3>
         <p>&copy; 2024 Module Federation Demo. All rights reserved.</p>
         <p>{`This is a federated footer component from ${state}`}</p>
 
         {/* Lodash example */}
-        <div style={{
-          marginTop: '1.5em',
-          padding: '1em',
-          backgroundColor: 'rgba(255,255,255,0.1)',
-          borderRadius: '4px',
-          textAlign: 'left'
-        }}>
+        <div className="footer-section">
           <strong>📦 Lodash Performance Analysis:</strong>
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-            gap: '1em',
-            marginTop: '1em'
-          }}>
+          <div className="metrics-grid">
             {_.map(performanceMetrics, metric => (
-              <div key={metric.metric} style={{
-                padding: '0.75em',
-                backgroundColor: 'rgba(97, 218, 251, 0.2)',
-                borderRadius: '4px'
-              }}>
-                <div style={{ fontSize: '0.85em', opacity: 0.8 }}>{metric.metric}</div>
-                <div style={{ fontSize: '1.5em', fontWeight: 'bold' }}>
+              <div key={metric.metric} className="metric-card">
+                <div className="metric-label">{metric.metric}</div>
+                <div className="metric-value">
                   {metric.value}{metric.unit}
                 </div>
               </div>
             ))}
           </div>
-          <div style={{ marginTop: '1em', fontSize: '0.9em' }}>
+          <div className="metric-summary">
             <p>Fastest: {fastestMetric?.metric} ({fastestMetric?.value}{fastestMetric?.unit})</p>
             <p>Slowest: {slowestMetric?.metric} ({slowestMetric?.value}{slowestMetric?.unit})</p>
             <p>Average: {_.round(averageValue, 2)}</p>
@@ -129,21 +108,10 @@ export default function Widget() {
         </div>
 
         {/* Chart.js example */}
-        <div style={{
-          marginTop: '1.5em',
-          padding: '1em',
-          backgroundColor: 'rgba(255,255,255,0.1)',
-          borderRadius: '4px'
-        }}>
+        <div className="footer-section">
           <strong>📊 Chart.js Load Time Distribution:</strong>
-          <div style={{
-            height: '200px',
-            marginTop: '1em',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center'
-          }}>
-            <div style={{ width: '300px', height: '200px' }}>
+          <div className="chart-wrapper">
+            <div className="chart-inner">
               <canvas ref={chartRef}></canvas>
             </div>
           </div>

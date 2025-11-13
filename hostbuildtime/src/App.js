@@ -2,6 +2,7 @@ import React, { Suspense } from "react";
 import { usePrioritizedRemotes } from "./hooks/usePrioritizedRemotes";
 import RemoteComponent from "./components/RemoteComponent";
 import { REMOTES_CONFIG, FRAMEWORK_CONFIG } from "./config/remotesConfig";
+import "./App.css";
 
 // High priority remotes - loaded immediately using React.lazy (build-time remotes)
 const Header = React.lazy(() => import("headerApp/Widget"));
@@ -19,22 +20,14 @@ function App() {
   const footerRemote = lowPriorityRemotes.find(r => r.name === 'footerApp');
 
   return (
-    <div
-      style={{
-        fontFamily:
-          '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
-        minHeight: "100vh",
-        display: "flex",
-        flexDirection: "column",
-      }}
-    >
+    <div className="app-container">
       {/* High Priority: Header - loaded immediately */}
-      <Suspense fallback={<div style={{ padding: "1.5em", textAlign: "center" }}>Loading Header...</div>}>
+      <Suspense fallback={<div className="loading-fallback">Loading Header...</div>}>
         <Header />
       </Suspense>
 
       {/* High Priority: Main Content - loaded immediately */}
-      <Suspense fallback={<div style={{ padding: "1.5em", textAlign: "center" }}>Loading Main Content...</div>}>
+      <Suspense fallback={<div className="loading-fallback">Loading Main Content...</div>}>
         <Main />
       </Suspense>
 
@@ -47,7 +40,7 @@ function App() {
           retry={footerRemote.retry}
           name="Footer"
           loadingFallback={
-            <div style={{ padding: "1.5em", textAlign: "center", color: "#999" }}>
+            <div className="loading-fallback-low-priority">
               {allHighPriorityLoaded
                 ? "Loading Footer (Low Priority)..."
                 : "Waiting for high-priority content..."}
@@ -58,15 +51,9 @@ function App() {
 
       {/* Debug Info - Remove in production */}
       {process.env.NODE_ENV === 'development' && (
-        <div style={{
-          padding: '1em',
-          backgroundColor: '#f5f5f5',
-          borderTop: '1px solid #ddd',
-          fontSize: '0.875em',
-          color: '#666'
-        }}>
+        <div className="debug-info">
           <strong>Prioritization Framework Debug:</strong>
-          <ul style={{ margin: '0.5em 0', paddingLeft: '1.5em' }}>
+          <ul>
             <li>High Priority Loaded: {allHighPriorityLoaded ? '✅' : '⏳'}</li>
             <li>Footer Status: {footerRemote?.loading ? '⏳ Loading' : footerRemote?.error ? '❌ Error' : footerRemote?.Component ? '✅ Loaded' : '⏸️ Waiting'}</li>
           </ul>
