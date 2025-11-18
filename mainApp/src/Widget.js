@@ -2,7 +2,7 @@ import '../../setNonce';
 import React, { useEffect, useRef } from "react";
 import _ from "lodash";
 import { Chart } from "chart.js/auto";
-import "./Widget.css";
+import("./Widget.css");
 
 export default function Widget() {
   const chartRef = useRef(null);

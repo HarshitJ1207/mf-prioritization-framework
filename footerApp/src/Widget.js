@@ -2,7 +2,7 @@ import '../../setNonce';
 import React, { useState, useEffect, useRef } from "react";
 import _ from "lodash";
 import { Chart } from "chart.js/auto";
-import "./Widget.css";
+import("./Widget.css");
 
 export default function Widget() {
   const [state, setState] = useState("footer app");

@@ -91,7 +91,7 @@ module.exports = {
       "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
       "Access-Control-Allow-Headers":
         "X-Requested-With, content-type, Authorization",
-      "Content-Security-Policy-Report-Only": `script-src 'self' 'nonce-${STATIC_NONCE}' 'strict-dynamic'; style-src 'self' 'nonce-${STATIC_NONCE}';`,
+      "Content-Security-Policy": `script-src 'self' 'nonce-${STATIC_NONCE}' 'strict-dynamic'; style-src 'self' 'nonce-${STATIC_NONCE}';`,
     },
     compress: true,
     port: 3000,
