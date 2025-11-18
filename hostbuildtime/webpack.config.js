@@ -2,7 +2,6 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { ModuleFederationPlugin } = require("webpack").container;
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 // Static nonce for CSP
 const STATIC_NONCE = 'c29tZSBjb29sIHN0cmluZyB3aWxsIHBvcCB1cCAxMjM=';
@@ -29,7 +28,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader"],
+        use: ["style-loader", "css-loader"],
       },
     ],
   },
@@ -54,16 +53,6 @@ module.exports = {
           singleton: true,
         },
       },
-    }),
-    new MiniCssExtractPlugin({
-      filename: '[name].css',
-      chunkFilename: '[id].css',
-      // insert: function (linkTag) {
-      //   // Workaround from https://github.com/webpack/mini-css-extract-plugin/issues/1081
-      //   // Manually add nonce to dynamically created <link> tags
-      //   linkTag.nonce = window.__webpack_nonce__;
-      //   document.head.appendChild(linkTag);
-      // }
     }),
     new HtmlWebpackPlugin({
       template: "./src/index.html",
